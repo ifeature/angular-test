@@ -20,6 +20,17 @@ angular.module('myApp', [])
   };
 })
 
+.component('helloWorld', {
+  template: 'Hello, world!',
+  controller: function() {
+    this.myTitle = 'hi';
+
+    this.sayHi = function() {
+      this.title = 'Hello';
+    };
+  }
+})
+
 .controller('MainController', function(Calc) {
   this.doCalculations = function (a, b) {
     this.result = Calc.sum(a, b);
@@ -39,18 +50,6 @@ angular.module('myApp', [])
         UserService.getOne(1).then(function(user) {
           scope.user = user;
         });
-      };
-    }
-  }
-})
-
-.component('helloWorld', function() {
-  return {
-    controller: function() {
-      this.myTitle = 'hi';
-
-      this.sayHi = function() {
-        this.title = 'Hello';
       };
     }
   };

@@ -1,6 +1,13 @@
 // Karma configuration
 // Generated on Sun Nov 13 2016 14:17:05 GMT+0200 (EET)
 
+const webpackConfig = require('./webpack.config');
+const path = require('path');
+const entry = path.resolve(webpackConfig.entry);
+const preprocessors = {};
+
+//preprocessors[entry] = ['webpack'];
+
 module.exports = function(config) {
   config.set({
 
@@ -17,9 +24,12 @@ module.exports = function(config) {
     files: [
       'angular.min.js',
       'angular-mocks.js',
+      //entry,
       'app.js',
       'app-test.js'
     ],
+
+    webpack: webpackConfig,
 
 
     // list of files to exclude
@@ -29,8 +39,7 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: preprocessors,
 
 
     // test results reporter to use
@@ -67,6 +76,12 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    plugins: [
+      require('karma-webpack'),
+      'karma-jasmine',
+      'karma-chrome-launcher'
+    ]
   })
 }

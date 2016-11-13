@@ -88,7 +88,7 @@ describe('myApp', () => {
 
     it('should expose my title', function() {
       expect(controller.myTitle).toBeDefined();
-      expect(controller.myTitle).toBe('Hi');
+      expect(controller.myTitle).toBe('hi');
     });
   });
 
